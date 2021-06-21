@@ -65,7 +65,7 @@ module Rack
       end
 
       def self.parse(io, content_length, content_type, tmpfile, bufsize, qp)
-        return EMPTY if 0 == content_length || content_length.nil?
+        return EMPTY if 0 == content_length
 
         boundary = parse_boundary content_type
         return EMPTY unless boundary
