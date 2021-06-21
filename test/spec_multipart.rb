@@ -700,6 +700,13 @@ EOF
     params['profile']['bio'].must_include 'hello'
   end
 
+  it "GET with no content-length header" do
+    env = Rack::MockRequest.env_for '/', { :method => 'GET' }
+    env['CONTENT_TYPE'] = "multipart/form-data; boundary=----WebKitFormBoundaryWLHCs9qmcJJoyjKR"
+    env.delete 'CONTENT_LENGTH'
+    Rack::Multipart.parse_multipart(env)
+  end
+
   it "parse very long unquoted multipart file names" do
     data = <<-EOF
 --AaB03x\r
