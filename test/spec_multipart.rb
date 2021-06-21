@@ -13,6 +13,7 @@ describe Rack::Multipart do
 
     { "CONTENT_TYPE" => type,
       "CONTENT_LENGTH" => length.to_s,
+      :method => "POST",
       :input => StringIO.new(data) }
   end
 
