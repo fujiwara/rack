@@ -46,7 +46,7 @@ module Rack
         io = req.get_header(RACK_INPUT)
         io.rewind
         content_length = req.content_length
-        content_length = content_length.to_i if content_length || content_length.nil?
+        content_length = content_length.to_i if content_length
 
         tempfile = req.get_header(RACK_MULTIPART_TEMPFILE_FACTORY) || Parser::TEMPFILE_FACTORY
         bufsize = req.get_header(RACK_MULTIPART_BUFFER_SIZE) || Parser::BUFSIZE
